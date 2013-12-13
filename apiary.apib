@@ -348,7 +348,12 @@ ControlRule related resources of the **Appliance API**
 
 + Response 201 (application/json)
 
-        { "id": 6, "title": "contact switch", "unit": "binary" }
+            { "id": 17, "title": "Laundry lamp on when PIR status set and ambient light is low", "actions": {
+              { "appliance-id": 5, "set-status": "on" }
+            }, "conditions": { 
+              { "mote-id": 4, "sensor-index": 0, "value": "PIR-status", "operator": "eq", "value": "set" }, 
+              { "mote-id": 0, "sensor-index": 0, "value": "ambient-light", "operator": "lt", "value": "0.50" }
+            } 
 
 
 ## ControlRule [/controlrules/{id}]
@@ -366,7 +371,16 @@ A single ControlRule object with all its details
 
     + Body
 
-            { "id": 1, "temperature sensor", "unit": "Celsius" }
+            { "id": 1, "title": "heating on weekday morning temperature rule", "actions": {
+              { "appliance-id": 1, "set-status": "on" }
+            }, "conditions": { 
+              { "mote-id": 0, "sensor-index": 0, "value": "day", "operator": "ge", "value": "Monday" }, 
+              { "mote-id": 0, "sensor-index": 0, "value": "day", "operator": "lt", "value": "Friday" },
+              { "mote-id": 0, "sensor-index": 0, "value": "time", "operator": "ge", "value": "06:00:00" }, 
+              { "mote-id": 0, "sensor-index": 0, "value": "time", "operator": "lt", "value": "08:30:00" },
+              { "mote-id": 2, "sensor-index": 0, "value": "temperature", "operator": "lt", "value": "17.5" }
+            } 
+            
 
 ### Remove a ControlRule [DELETE]
 + Response 204
