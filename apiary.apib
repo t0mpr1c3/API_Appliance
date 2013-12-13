@@ -12,15 +12,15 @@ Appliance related resources of the **Appliance API**
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "Heating", "status": "off"
+          "id": 1, "title": "Heating", "status": "off", "controlling-mote-id": 1
         }, {
-          "id": 2, "title": "Air Conditioner", "status": "off"
+          "id": 2, "title": "Air Conditioner", "status": "off", "controlling-mote-id": 2
         }, {
-          "id": 3, "title": "Fan", "status": "off"
+          "id": 3, "title": "Fan", "status": "off", "controlling-mote-id": 2
         }, {
-          "id": 4, "title": "Door Bell", "status": "off"
+          "id": 4, "title": "Door Bell", "status": "off", "controlling-mote-id": 4
         }, {
-          "id": 5, "title": "Laundry Room Ceiling Lamp", "status": "off"
+          "id": 5, "title": "Laundry Room Ceiling Lamp", "status": "off", "controlling-mote-id": 5
         }]
 
 ### Create an Appliance [POST]
@@ -30,7 +30,7 @@ Appliance related resources of the **Appliance API**
 
 + Response 201 (application/json)
 
-        { "id": 6, "title": "Appliance" }
+        { "id": 6, "title": "Appliance", "controlling-mote-id": 1 }
 
 ## Appliance [/appliances/{id}]
 A single Appliance object with all its details
@@ -47,10 +47,65 @@ A single Appliance object with all its details
 
     + Body
 
-            { "id": 1, "title": "Heating" }
+            { "id": 1, "title": "Heating", "controlling-mote-id": 1 }
 
 ### Remove an Appliance [DELETE]
 + Response 204
+
+
+# Group Mote
+Mote related resources of the **Appliance API**
+
+## Mote Collection [/motes]
+### List all Motes [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "title": "basement mote", "location": "basement",
+          "sensor-ids": [ 1, 3, 4 ]
+        }, {
+          "id": 2, "title": "hallway mote", "location": "1st floor hallway",
+          "sensor-ids": [ 1, 2 ]
+        }, {
+          "id": 3, "title": "office mote", "location": "office",
+          "sensor-ids": [ ]
+        }, {
+          "id": 4, "title": "porch mote", "location": "front porch",
+          "sensor-ids": [ 3, 4 ]
+        }, {
+          "id": 5, "title": "laundry mote", "location": "laundry",
+          "sensor-ids": [ 3, 4 ]
+        }]
+
+### Create a Mote [POST]
++ Request (application/json)
+
+        { "title": "kitchen mote", "location": "kitchen", "sensor-ids": [ 3 ] }
+
++ Response 201 (application/json)
+
+        { "id": 6, "title": "kitchen mote", "location": "kitchen", "sensor-ids": [ 3 ] }
+
+## Mote [/motes/{id}]
+A single Mote object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+
+### Retrieve a Sensor [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "title": "basement mote", "location": "basement", "sensor-ids": [ 1, 3, 4 ] }
+
+### Remove a Mote [DELETE]
++ Response 204
+
 
 # Group Sensor
 Sensor related resources of the **Appliance API**
@@ -60,25 +115,26 @@ Sensor related resources of the **Appliance API**
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "basement sensor", "location": "basement"
+          "id": 1, "title": "temperature sensor", "unit": "Celsius"
         }, {
-          "id": 2, "title": "hallway sensor", "location": "1st floor hallway"
+          "id": 2, "title": "humidity sensor", "unit": "%"
         }, {
-          "id": 3, "title": "office sensor", "location": "office"
+          "id": 3, "title": "PIR detector", "unit": "binary"
         }, {
-          "id": 4, "title": "porch sensor", "location": "front porch"
+          "id": 4, "title": "ambient light sensor", "unit": "%"
         }, {
-          "id": 5, "title": "laundry sensor", "location": "laundry"
+          "id": 5, "title": "reed switch", "unit": "binary"
         }]
 
 ### Create a Sensor [POST]
 + Request (application/json)
 
-        { "title": "kitchen sensor", "location": "kitchen" }
+        { "title": "contact switch", "unit": "binary" }
 
 + Response 201 (application/json)
 
-        { "id": 6, "title": "kitchen sensor", "location": "kitchen" }
+        { "id": 6, "title": "contact switch", "unit": "binary" }
+
 
 ## Sensor [/sensors/{id}]
 A single Sensor object with all its details
@@ -95,7 +151,7 @@ A single Sensor object with all its details
 
     + Body
 
-            { "id": 1, "title": "basement sensor", "location": "basement" }
+            { "id": 1, "temperature sensor", "unit": "Celsius" }
 
 ### Remove a Sensor [DELETE]
 + Response 204
