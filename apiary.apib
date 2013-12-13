@@ -4,35 +4,41 @@ HOST: http://www.google.com
 # Appliance API
 Appliance API is a *home automation* application allowing control over appliances using data from a network of sensors.
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group Appliance
+Appliance related resources of the **Appliance API**
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Appliance Collection [/notes]
+### List all Appliances [GET]
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "Jogging in park"
+          "id": 1, "title": "Heating",
         }, {
-          "id": 2, "title": "Pick-up posters from post-office"
+          "id": 2, "title": "Air Conditioner"
+        }, {
+          "id": 3, "title": "Fan"
+        }, {
+          "id": 4, "title": "Door Bell"
+        }, {
+          "id": 5, "title": "Laundry Room Ceiling Lamp"
         }]
 
-### Create a Note [POST]
+### Create an Appliance [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        { "title": "Appliance" }
 
 + Response 201 (application/json)
 
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
+        { "id": 6, "title": "Appliance" }
 
-## Note [/notes/{id}]
-A single Note object with all its details
+## Appliance [/appliances/{id}]
+A single Appliance object with all its details
 
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
 
-### Retrieve a Note [GET]
+### Retrieve an Appliance [GET]
 + Response 200 (application/json)
 
     + Header
@@ -41,7 +47,7 @@ A single Note object with all its details
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            { "id": 1, "title": "Heating" }
 
-### Remove a Note [DELETE]
+### Remove an Appliance [DELETE]
 + Response 204
