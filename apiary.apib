@@ -12,15 +12,15 @@ Appliance related resources of the **Appliance API**
 + Response 200 (application/json)
 
         [{
-          "id": 1, "title": "Heating",
+          "id": 1, "title": "Heating", "status": "off"
         }, {
-          "id": 2, "title": "Air Conditioner"
+          "id": 2, "title": "Air Conditioner", "status": "off"
         }, {
-          "id": 3, "title": "Fan"
+          "id": 3, "title": "Fan", "status": "off"
         }, {
-          "id": 4, "title": "Door Bell"
+          "id": 4, "title": "Door Bell", "status": "off"
         }, {
-          "id": 5, "title": "Laundry Room Ceiling Lamp"
+          "id": 5, "title": "Laundry Room Ceiling Lamp", "status": "off"
         }]
 
 ### Create an Appliance [POST]
@@ -50,4 +50,52 @@ A single Appliance object with all its details
             { "id": 1, "title": "Heating" }
 
 ### Remove an Appliance [DELETE]
++ Response 204
+
+# Group Sensor
+Sensor related resources of the **Appliance API**
+
+## Sensor Collection [/sensors]
+### List all Sensors [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "title": "basement sensor", "location": "basement"
+        }, {
+          "id": 2, "title": "hallway sensor", "location": "1st floor hallway"
+        }, {
+          "id": 3, "title": "office sensor", "location": "office"
+        }, {
+          "id": 4, "title": "porch sensor", "location": "front porch"
+        }, {
+          "id": 5, "title": "laundry sensor", "location": "laundry"
+        }]
+
+### Create a Sensor [POST]
++ Request (application/json)
+
+        { "title": "kitchen sensor", "location": "kitchen" }
+
++ Response 201 (application/json)
+
+        { "id": 6, "title": "kitchen sensor", "location": "kitchen" }
+
+## Sensor [/sensors/{id}]
+A single Sensor object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+
+### Retrieve a Sensor [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "title": "basement sensor", "location": "basement" }
+
+### Remove a Sensor [DELETE]
 + Response 204
