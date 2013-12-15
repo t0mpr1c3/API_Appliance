@@ -188,13 +188,7 @@ A single Measure object with all its details
 ### Retrieve a Measure [GET]
 + Response 200 (application/json)
 
-    + Header
-
-            X-My-Header: The Value
-
-    + Body
-
-            { "id": 2, "temperature", "unit": "Celsius" }
+        { "id": 2, "temperature", "unit": "Celsius" }
 
 ### Remove a Measure [DELETE]
 + Response 204
@@ -405,22 +399,28 @@ A single ControlRule object with all its details
 ### Retrieve a ControlRule [GET]
 + Response 200 (application/json)
 
-    + Header
-
-            X-My-Header: The Value
-
-    + Body
-
-            { "id": 1, "title": "heating on weekday morning temperature rule", "actions": {
-              { "appliance_id": 1, "set_status": "on" }
-            }, "conditions": { 
-              { "mote_id": 0, "sensor_index": 0, "operator": "ge", "value": "Monday" }, 
-              { "mote_id": 0, "sensor_index": 0, "operator": "lt", "value": "Friday" },
-              { "mote_id": 0, "sensor_index": 0, "operator": "ge", "value": "06:00:00" }, 
-              { "mote_id": 0, "sensor_index": 0, "operator": "lt", "value": "08:30:00" },
-              { "mote_id": 2, "sensor_index": 0, "operator": "lt", "value": "17.5" }
-            } 
+        { "id": 1, "title": "heating on weekday morning temperature rule", "actions": {
+            { "appliance_id": 1, "set_status": "on" }
+        }, "conditions": { 
+            { "mote_id": 0, "sensor_index": 0, "operator": "ge", "value": "Monday" }, 
+            { "mote_id": 0, "sensor_index": 0, "operator": "lt", "value": "Friday" },
+            { "mote_id": 0, "sensor_index": 0, "operator": "ge", "value": "06:00:00" }, 
+            { "mote_id": 0, "sensor_index": 0, "operator": "lt", "value": "08:30:00" },
+            { "mote_id": 2, "sensor_index": 0, "operator": "lt", "value": "17.5" }
+        } 
             
+### Edit Conditions of a ControlRule [PUT]
++ Request (application/json)
+
+        {[
+            { "mote_id": 0, "sensor_index": 0, "operator": "ge", "value": "Monday" }, 
+            { "mote_id": 0, "sensor_index": 0, "operator": "lt", "value": "Friday" },
+            { "mote_id": 0, "sensor_index": 0, "operator": "ge", "value": "06:00:00" }, 
+            { "mote_id": 0, "sensor_index": 0, "operator": "lt", "value": "08:30:00" },
+            { "mote_id": 2, "sensor_index": 0, "operator": "lt", "value": "17.5" }
+        ]}
+        
++ Response 200
 
 ### Remove a ControlRule [DELETE]
 + Response 204
