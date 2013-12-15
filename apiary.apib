@@ -16,7 +16,7 @@ Appliance related resources of the **Appliance API**
         }, {
           "id": 1, "title": "Air Conditioner", "status": "off", "controlling-mote-id": 2
         }, {
-          "id": 2, "title": "Fan", "status": "off", "controlling-mote-id": 2
+          "id": 2, "title": "Central Fan", "status": "off", "controlling-mote-id": 2
         }, {
           "id": 3, "title": "Door Bell", "status": "off", "controlling-mote-id": 4
         }, {
@@ -30,7 +30,7 @@ Appliance related resources of the **Appliance API**
 
 + Response 201 (application/json)
 
-        { "id": 6, "title": "Appliance", "controlling-mote-id": 1 }
+        { "id": 5, "title": "Local Fan", "status": "off", "controlling-mote-id": 5 }
 
 ## Appliance [/appliances/{id}]
 A single Appliance object with all its details
@@ -47,7 +47,7 @@ A single Appliance object with all its details
 
     + Body
 
-            { "id": 0, "title": "Heating", "controlling-mote-id": 1 }
+            { "id": 0, "title": "Heating", "status": "off", "controlling-mote-id": 1 }
 
 ### Remove an Appliance [DELETE]
 + Response 204
